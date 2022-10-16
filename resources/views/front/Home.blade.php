@@ -376,7 +376,7 @@
    <!-----POPUP FORM SIGNIN SIGNUP SECTION END------->
     <header class="u-clearfix u-header u-header" id="sec-b139">
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <a href="Home.html" class="u-image u-logo u-image-1">
+            <a href="/" class="u-image u-logo u-image-1">
                 <img src="front/img/logo.png" class="u-logo-image u-logo-image-1" alt="">
             </a>
             <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -389,13 +389,13 @@
                 </div>
                 <div class="u-nav-container">
                     <ul class="u-nav u-unstyled u-nav-1">
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/" style="padding: 10px 20px;">Home</a>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Form.html" style="padding: 10px 20px;">Form</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#" style="padding: 10px 20px;">Booking</a>
                             <ul class="drop-down">
-                                <li><a href="" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Appointments</a></li>
-                                <li><a href="medicine_Dosage_Schedules.html" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Medicine Dosage Schedules</a></li>
-                                <li><a href="personal_Health_Vitals.html" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Personal Health Vitals</a></li>
+                                <li><a href="/search-hospital" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Hospital</a></li>
+                                <li><a href="/search-doctor" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Doctor</a></li>
+                                <li><a href="/search-service" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Service</a></li>
                             </ul>
                         </li>
                         <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="About.html" style="padding: 10px 20px;">About</a>
@@ -433,7 +433,7 @@
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="form.html">Form</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Booking</a>
 
                                 </li>
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
@@ -476,7 +476,7 @@
                                         <span>Vui lòng để lại thông tin, chúng tôi sẽ liên hệ với bạn để tư vấn.</span>
                                     </div>
                                     <div class="modal-bodyy">
-                                        <form action="Home.html">
+                                        <form action="Home.html" method="post">
                                             <div class="mb-3">
                                                 <label for="book-name" class="form-label">Name<span style="color:green;">*</span></label>
                                                 <input type="text" class="book-name" id="book-name" placeholder="Ex:Nguyen Van A">
@@ -484,6 +484,10 @@
                                             <div class="mb-3">
                                                 <label for="phonenumber" class="form-label">Phone Number<span style="color:green;">*</span></label>
                                                 <input type="text" class="phonenumber" id="phonenumber" placeholder="Ex:0912345678">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email_address" class="form-label">Email Address<span style="color:green;">*</span></label>
+                                                <input type="email" class="email_address" id="email_address" placeholder="Ex:abc@gmail.com">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="text-area" class="form-label">Examination needs</label>
