@@ -15,19 +15,33 @@
 	 ?>
                         <div class="panel-body">
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-category-hospital')}}" method="post" enctype="multipart/form-data">
+                                <form class="needs-validation" role="form" action="{{URL::to('/save-category-hospital')}}" method="post" enctype="multipart/form-data" >
                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="name_hospital">Nhập tên bệnh viện:</label>
-                                    <input type="text" class="form-control" id="name_hospital" name="name_hospital" placeholder="Enter Hospital Name">
+                                    <input type="text" class="form-control" id="name_hospital" name="name_hospital" placeholder="Enter Hospital Name" required>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="hospital_code">Nhập tên mã bệnh viện:</label>
+                                    <input type="text" class="form-control" id="hospital_code" name="hospital_code" placeholder="Enter Hospital Code " required>
+                                    <?php
+	   $message_error= Session::get('message_error');
+	   if($message_error){
+		 echo '<span class="text-alert" style="text-align:left;">',$message_error,'</span>' ;
+		 Session::put('message_error',null);
+	   }
+	 ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="address_hospital">Nhập địa chỉ bệnh viện:</label>
-                                    <input type="text" class="form-control" id="address_hospital" name="address_hospital" placeholder="Enter Hospital Address">
+                                    <input type="text" class="form-control" id="address_hospital" name="address_hospital" placeholder="Enter Hospital Address" required>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="NumberOfRegistrations">Số lượt đăng kí:</label>
-                                    <input type="text" class="form-control" id="NumberOfRegistrations" name="NumberOfRegistrations" placeholder="Enter Number of Registrations">
+                                    <input type="text" class="form-control" id="NumberOfRegistrations" name="NumberOfRegistrations" placeholder="Enter Number of Registrations" required>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="img_hospital">Chọn file ảnh bệnh viện</label>
@@ -39,7 +53,7 @@
                                         <input type="checkbox"> Check me out
                                     </label>
                                 </div>
-                                <button onclick="return alert('Thêm danh mục Bệnh viện thành công!')" type="submit" class="btn btn-info">Thêm danh mục</button>
+                                <button  type="submit" class="btn btn-info">Thêm danh mục</button>
                             </form>
                             </div>
 
@@ -67,31 +81,40 @@
 	 ?>
                         <div class="panel-body">
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-category-doctor')}}" method="post" enctype="multipart/form-data">
+                                <form class="needs-validation" role="form" action="{{URL::to('/save-category-doctor')}}" method="post" enctype="multipart/form-data" >
                                {{ csrf_field() }}
                                <div class="form-group">
                                     <label for="name_doctor">Tên bác sĩ:</label>
-                                    <input type="text"  class="form-control" id="name_doctor" name="name_doctor" placeholder="Enter Doctor Name">
+                                    <input type="text"  class="form-control is-valid" id="name_doctor" name="name_doctor" placeholder="Enter Doctor Name" required>
+                                   
                                 </div>
                                 <div class="form-group">
-                                    <label for="hospital_doctor">Nơi làm việc:</label>
-                                    <input type="text"  class="form-control" id="hospital_doctor" name="hospital_doctor" placeholder="">
+                                    <label for="hospital_doctor">Bệnh viện đang công tác:</label>
+                                    <input type="text"  class="form-control is-valid" id="hospital_doctor" name="hospital_doctor" placeholder="" required>        
+                                </div>
+                                <div class="form-group">
+                                    <label for="hospital_code">Mã bệnh viện đang công tác:</label>
+                                    <input type="text"  class="form-control is-valid" id="hospital_code" name="hospital_code" placeholder="" required>        
                                 </div>
                                 <div class="form-group">
                                     <label for="specialist_doctor">Chuyên khoa:</label>
-                                    <input type="text"  class="form-control" id="specialist_doctor" name="specialist_doctor" placeholder="">
+                                    <input type="text"  class="form-control is-valid" id="specialist_doctor" name="specialist_doctor" placeholder="" required>
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <label for="star_doctor">Đánh giá:</label>
-                                    <input type="text"  class="form-control" id="star_doctor" name="star_doctor" placeholder="">
+                                    <label for="star_doctor ">Đánh giá:</label>
+                                    <input type="text"  class="form-control is-valid" id="star_doctor" name="star_doctor" placeholder="" required>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="price_book">Giá đặt khám:</label>
-                                    <input type="text"  class="form-control" id="price_book" name="price_book" placeholder="">
+                                    <input type="text"  class="form-control is-valid" id="price_book" name="price_book" placeholder="" required>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="book_doctor">Số lượng đặt khám:</label>
-                                    <input type="text"  class="form-control" id="book_doctor" name="book_doctor" placeholder="Enter Number of Registrations">
+                                    <input type="text"  class="form-control is-valid" id="book_doctor" name="book_doctor" placeholder="Enter Number of Registrations" required>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="img_doctor">Chọn file ảnh bác sĩ</label>
@@ -103,7 +126,7 @@
                                         <input type="checkbox"> Check me out
                                     </label>
                                 </div>
-                                <button onclick="return alert('Thêm danh mục bác sĩ thành công!')" type="submit" class="btn btn-info">Thêm danh mục</button>
+                                <button  type="submit" class="btn btn-info">Thêm danh mục</button>
                             </form>
                             </div>
 

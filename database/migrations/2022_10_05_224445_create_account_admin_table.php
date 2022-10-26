@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('account_admin', function (Blueprint $table) {
             
             $table->increments('admin_id');
-            $table->string('admin_email',100);
+            $table->string('admin_email',100)->unique();
             $table->string('admin_password');
             $table->string('admin_name');
             $table->integer('admin_phone');

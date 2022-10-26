@@ -44,6 +44,7 @@
             </th>
             <th style="width:15px;">Stt</th>
             <th>Tên Bệnh viện</th>
+            <th style="width:110px;">Mã bệnh viện</th>
             <th>Địa chỉ bệnh viện</th>
             <th style="width:100px;">Ảnh bệnh viện</th>
             <th style="width:100px;">Lượt đăng kí</th>
@@ -56,8 +57,9 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td style="text-align: center;">{{$cate_pro-> hospital_id}}</td>
             <td>{{$cate_pro-> name_hospital}}</td>
+            <td style="text-align: center;">{{$cate_pro-> hospital_code}}</td>
             <td><span class="text-ellipsis">{{$cate_pro-> address_hospital}}</span></td>
-            <td><span class="text-ellipsis"><img src="upload/hospital/{{$cate_pro-> img_hospital}}" height="55px" width="80px" ></span></td>
+            <td><span class="text-ellipsis"><img src="upload/hospital/{{$cate_pro->img_hospital}}" height="55px" width="80px" ></span></td>
             <td>{{$cate_pro-> book_hospital}}</td>
             <td>
               <a href="{{URL::to('/admin-edit-category-hospital/'.$cate_pro->hospital_id)}}" class="active" ui-toggle-class="">

@@ -20,6 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{asset('dashboard/css/font-awesome.css')}}" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="{{asset('dashboard/js/jquery2.0.3.min.js')}}"></script>
+
 </head>
 <body>
 <section id="container">
@@ -28,7 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--logo start-->
 <div class="brand">
 
-    <a href="/admin-all-category-hospital" class="logo">
+    <a href="/admin" class="logo">
         ADMIN
     </a>
     <div class="sidebar-toggle-box">
@@ -289,24 +290,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="responsive_table.html">Responsive Table</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
-                        <span>Form Components</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="form_component.html">Form Elements</a></li>
-                        <li><a href="form_validation.html">Form Validation</a></li>
-						<li><a href="dropzone.html">Dropzone</a></li>
-                    </ul>
-                </li>
+              
                
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                </li>
             </ul>            </div>
         <!-- sidebar menu end-->
     </div>

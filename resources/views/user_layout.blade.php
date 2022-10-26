@@ -6,13 +6,20 @@
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Home</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('front/css/nicepage.css')}}" media="screen">
     <link rel="stylesheet" href="{{asset('front/css/Home.css')}}" media="screen">
     <link rel="stylesheet" href="{{asset('front/css/Modal.css')}}">
      <link rel="stylesheet" href="{{asset('front/css/Search.css')}}">
     <script class="u-script" type="text/javascript" src="{{asset('front/js/jquery.js')}}" "=" " defer=" "></script>
     <script class="u-script " type="text/javascript " src="{{asset('front/js/nicepage.js')}} " "="" defer=""></script>
+    <script src="{{asset('front/js/bootstrap.js')}}"></script>
+<script src="{{asset('front/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{asset('front/js/scripts.js')}}"></script>
+<script src="{{asset('front/js/jquery.slimscroll.js')}}"></script>
+<script src="{{asset('front/js/jquery.nicescroll.js')}}"></script>
+
+<script src="{{asset('front/js/jquery.scrollTo.js')}}"></script>
     <meta name="generator" content="Nicepage 4.15.11, nicepage.com">
 
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -81,7 +88,18 @@
             });
     });
   </script>
-
+<!-- SCRIPT DROPDOWN USER -->
+<script>
+    jQuery(document).ready(function(){
+        var $wrap_user_login= $('.wrap-user-login'),
+            $dropdown_user=$('.dropdown-menu-user') ;
+        $wrap_user_login.on('click',function(){
+             $dropdown_user.toggleClass('show');
+        });
+       
+    });
+  </script>
+  <!-- SCRIPT DROPDOWN USER END -->
 <script>
         jQuery(document).ready(function($) {
             var $form_modal = $('.cd-user-modal'),
@@ -167,12 +185,12 @@
                 $form_forgot_password.addClass('is-selected');
             }
             //Kiểm tra form hợp lệ 
-            $form_login.find('input[type="submit"]').on('click', function(event) {
-                event.preventDefault();
-                if ($('#signin-email').val() == '') {
-                    $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-                }
-            });
+            // $form_login.find('input[type="submit"]').on('click', function(event) {
+            //     event.preventDefault();
+            //     if ($('#signin-email').val() == '') {
+            //         $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+            //     }
+            // });
             //IE9 placeholder fallback
             //credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
             if (!Modernizr.input.placeholder) {
@@ -226,6 +244,25 @@
             "logo": "{{asset('front/img/default-logo.png"
         }
     </script>
+    <!--Back to top -->
+    <button id="myBtn" title="Back to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                <script>
+                    window.onscroll = function() {
+                        scrollFunction()
+                    };
+
+                    function scrollFunction() {
+                        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+                            document.getElementById("myBtn").style.display = "block";
+                        } else {
+                            document.getElementById("myBtn").style.display = "none";
+                        }
+                    }
+                    document.getElementById('myBtn').addEventListener("click", function() {
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                    });
+                </script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
@@ -234,7 +271,13 @@
 <body class="u-body u-xl-mode" data-lang="en">
    <!--TOP Section Begin-->
    <div id="topp">
-        <div class="justify-content">
+        <?php
+
+use Illuminate\Support\Facades\Auth;
+
+                 if(Auth::check()){
+                    echo '
+                    <div class="justify-content-user">
             <div class="wrap-link-test">
                 <div class="hotline">
                     <span class="text-hotline">Hotline đặt khám: </span>
@@ -246,15 +289,54 @@
                     <a style="text-decoration: none;" href="#">Trung tâm trợ giúp</a>
                 </div>
             </div>
-            <div class="wrap-user">
-                <div class="cd-signup">
-                    <a style="text-decoration: none;" href="#0">Đăng kí</a>
+                    <div class="wrap-user-login">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" src="dashboard/img/2.png">
+                        <span class="username">
+                      ';
+                     echo   Auth::user()->name;  
+                   echo'        
+                        </span> 
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu-user extended logout ">
+                        <li><a href="#"><i style="margin-right:3px;color:blueviolet" class=" fa-solid fa-user"></i> Profile</a></li>
+                        <li><a href="/history-user"><i style="margin-right:3px;color:blueviolet" class="fa-regular fa-calendar-days"></i> Booking History</a></li>
+                        <li><a href="#"><i style="margin-right:3px;color:#8b8e9e;" class="fa fa-cog"></i>  Settings</a></li>
+                        <li><a href="/logout-user"><i style="margin-right:3px;color:#8b8e9e" class="fa fa-key"></i> Log Out</a></li>
+                    </ul>
+                    </div>
+                    ';
+                 }
+                 else{
+                    echo '
+                    <div class="justify-content">
+                    <div class="wrap-link-test">
+                        <div class="hotline">
+                            <span class="text-hotline">Hotline đặt khám: </span>
+                            <span class="link-hotline">
+                                <a style="text-decoration: none;" href="#">0912345678</a>
+                            </span>
+                        </div>
+                        <div class="support">
+                            <a style="text-decoration: none;" href="#">Trung tâm trợ giúp</a>
+                        </div>
+                    </div> 
+                    <div class="wrap-user">
+                    <div class="cd-signup">
+                        <a style="text-decoration: none; cursor:pointer" >Đăng kí</a>
+                    </div>
+                    <div class="space"></div>
+                    <div class="cd-signin">
+                        <a style="text-decoration: none;cursor:pointer" >Đăng nhập</a>
+                    </div>
                 </div>
-                <div class="space"></div>
-                <div class="cd-signin">
-                    <a style="text-decoration: none;" href="#0">Đăng nhập</a>
-                </div>
-            </div>
+                    ';
+
+                 }
+        ?>
+
+   
         </div>
     </div>
    <!--TOP Section End-->
@@ -263,30 +345,34 @@
         <!-- this is the entire modal form, including the background -->
         <div class="cd-user-modal-container">
             <!-- this is the container wrapper -->
-            <ul class="cd-switcher">
+            <ul style="padding-left: 0px;" class="cd-switcher">
                 <li>
-                    <a href="#0">Đăng nhập
+                    <a style="cursor:pointer">Đăng nhập
             </a>
                 </li>
                 <li>
-                    <a href="#0">Tạo tài khoản
+                    <a style="cursor:pointer">Tạo tài khoản
             </a>
                 </li>
             </ul>
+           
+              <!-- <div class="alert alert-warning" role="alert">
+                 ERROR
+              </div>   -->
             <div id="cd-login">
                 <!-- log in form -->
-                <form class="cd-form">
+                <form class="cd-form" action="/signin-user" method="get">
                     <p class="fieldset">
-                        <label class="image-replace cd-email" for="signin-email">Email
+                        <label class="image-replace cd-email" for="signin_email">Email
               </label>
-                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                        <input class="full-width has-padding has-border" id="signin_email" name="signin_email" type="email" placeholder="E-mail" required>
                         <span class="cd-error-message">Email không được bỏ trống!
               </span>
                     </p>
                     <p class="fieldset">
-                        <label class="image-replace cd-password" for="signin-password">Password
+                        <label class="image-replace cd-password" for="signin_password">Password
               </label>
-                        <input class="full-width has-padding has-border" id="signin-password" type="text" placeholder="Password">
+                        <input class="full-width has-padding has-border" id="signin_password" name="signin_password" type="password" placeholder="Password" required>
                         <a href="#0" class="hide-password">Hide
               </a>
                         <span class="cd-error-message">Password không được bỏ trống!
@@ -310,25 +396,33 @@
             <!-- cd-login -->
             <div id="cd-signup">
                 <!-- sign up form -->
-                <form class="cd-form">
+                <form action="/signup-user" method="get"  class="cd-form" >
+                  @csrf
                     <p class="fieldset">
-                        <label class="image-replace cd-username" for="signup-username">Username
+                        <label class="image-replace cd-username" for="signup_username" >Username
               </label>
-                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+                        <input class="full-width has-padding has-border" id="signup_username" name="signup_username" type="text" placeholder="Username" required>
                         <span class="cd-error-message">Username không được bỏ trống!
               </span>
                     </p>
                     <p class="fieldset">
-                        <label class="image-replace cd-email" for="signup-email">Email
+                        <label class="image-replace cd-username" for="signup_phone">Username
               </label>
-                        <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                        <input class="full-width has-padding has-border" id="signup_phone" name="signup_phone" type="text" placeholder="Phone Number" required>
+                        <span class="cd-error-message">Số điện thoại không được bỏ trống!
+              </span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signup_email">Email
+              </label>
+                        <input class="full-width has-padding has-border" id="signup_email" name="signup_email" type="email" placeholder="E-mail" required>
                         <span class="cd-error-message">Email không được bỏ trống!
               </span>
                     </p>
                     <p class="fieldset">
-                        <label class="image-replace cd-password" for="signup-password">Password
+                        <label class="image-replace cd-password" for="signup_password">Password
               </label>
-                        <input class="full-width has-padding has-border" id="signup-password" type="text" placeholder="Password">
+                        <input class="full-width has-padding has-border" id="signup_password" name="signup_password" type="password" placeholder="Password" required>
                         <a href="#0" class="hide-password">Hide
               </a>
                         <span class="cd-error-message">Password không được bỏ trống!
@@ -378,7 +472,7 @@
    <!-----POPUP FORM SIGNIN SIGNUP SECTION END------->
     <header class="u-clearfix u-header u-header" id="sec-b139">
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <a href="Home.html" class="u-image u-logo u-image-1">
+            <a href="/" class="u-image u-logo u-image-1">
                 <img src="front/img/logo.png" class="u-logo-image u-logo-image-1" alt="">
             </a>
             <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -400,33 +494,15 @@
                                 <li><a href="/search-service" class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base">Service</a></li>
                             </ul>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="About.html" style="padding: 10px 20px;">About</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/handbook" style="padding: 10px 20px;">HandBook</a>
                         </li>
-                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Contact.html" style="padding: 10px 20px;">Contact</a>
+                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/doi-tac" style="padding: 16px 20px;width:170px;height:70px;">Trở thành đối tác của<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HEALTH PLUS</a>
                         </li>
                     </ul>
                 </div>
                 <!--SCROLLLL -->
 
-                <!--Back to top -->
-                <button id="myBtn" title="Back to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
-                <script>
-                    window.onscroll = function() {
-                        scrollFunction()
-                    };
-
-                    function scrollFunction() {
-                        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
-                            document.getElementById("myBtn").style.display = "block";
-                        } else {
-                            document.getElementById("myBtn").style.display = "none";
-                        }
-                    }
-                    document.getElementById('myBtn').addEventListener("click", function() {
-                        document.body.scrollTop = 0;
-                        document.documentElement.scrollTop = 0;
-                    });
-                </script>
+                
 
                 <div class="u-nav-container-collapse">
                     <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -440,7 +516,7 @@
                                 </li>
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html"></a>
                                 </li>
                             </ul>
                         </div>
@@ -499,7 +575,7 @@
             </div>
         </footer>
     </div>
-    
+  
 </body>
 
 </html>

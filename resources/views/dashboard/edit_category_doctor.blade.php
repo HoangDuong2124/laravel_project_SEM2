@@ -27,6 +27,10 @@
                                     <input type="text" value="{{$edit_value->hospital_doctor}}" class="form-control" id="hospital_doctor" name="hospital_doctor" placeholder="">
                                 </div>
                                 <div class="form-group">
+                                    <label for="hospital_code">Mã bệnh viện:</label>
+                                    <input type="text" value="{{$edit_value->hospital_code}}" class="form-control" id="hospital_code" name="hospital_code" placeholder="">
+                                </div>
+                                <div class="form-group">
                                     <label for="specialist_doctor">Chuyên khoa:</label>
                                     <input type="text" value="{{$edit_value->specialist_doctor}}" class="form-control" id="specialist_doctor" name="specialist_doctor" placeholder="">
                                 </div>

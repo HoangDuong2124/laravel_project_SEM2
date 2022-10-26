@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('book_doctor');
             $table->integer('star_doctor');
             $table->string('hospital_doctor');
+            $table->string('hospital_code');
             $table->string('specialist_doctor');
             $table->integer('price_book');
             $table->timestamps();

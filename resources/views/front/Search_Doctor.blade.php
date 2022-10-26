@@ -1,17 +1,22 @@
 @extends('user_layout')
+@section('title','Search Doctor')
 @section('main_content')
 
-      <div class="main-content">
+<div class="main-content">
            <div class="btn-search">
               <h3 class="banner-title">Đặt khám tại Health Plus </h3>
               <p>Để được đón tiếp ưu tiên, không cần xếp hàng đợi tại các điểm bệnh viện </p>
              <div class="general-search">
+             <form action="{{URL::to('/timkiem-bs')}}" method="post">
+             {{ csrf_field() }}
                 <div class="search-box">
+                     
                    <div class="search-input">
                       <span class="icon-search">
+                      <input type="submit" style="display:none">
                       <svg viewBox="64 64 896 896" focusable="false" data-icon="search" width="1.3em" height="1.3em" fill="currentColor" aria-hidden="true"><path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path></svg>
                       </span>
-                      <input type="text" class="text-search" placeholder="Tìm triệu chứng, chuyên khoa, tên bệnh viện, phòng khám">
+                      <input type="text" name="keyword_search" class="text-search" placeholder="Tìm triệu chứng, chuyên khoa, tên bác sĩ, cơ sở làm việc...">
                    </div>
                    <div class="search-address">
                        <div class="ant-selecter">
@@ -21,7 +26,9 @@
                        <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="0.9em" height="0.9em" fill="currentColor" aria-hidden="true"><path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg>
                        </span>
                    </div>
+                   
                 </div>
+             </form>
              </div> 
            </div>
 
@@ -32,7 +39,7 @@
             <div class="container">  
            <div class="row">
              @foreach($cate_doctor as $key => $cate)
-           <div class="ant-col ant-col-xs-12 ant-col-sm-8 ant-col-xl-6" style="padding-left: 15px; padding-right: 15px;">
+           <div class="col-lg-3" style="padding-left: 15px; padding-right: 15px;">
              <div class="styled__WrapDoctor-sc-16nbxge-1 eQWZSE">
                  <div class="wrap_info">
                     <div class="logo">
@@ -64,7 +71,7 @@
             </div>
           <div class="btn-footer-card">
              <button type="button" class="ant-btn ant-btn-default">
-                 <a style="list-style: none;color:white;text-decoration:none;" href="/ho-so-bac-si/PGS-TS-Nguyen-Quang-975">
+                 <a style="list-style: none;color:white;text-decoration:none;" href="/book-doctor">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGeSURBVHgB3VXtUcMwDFV6DJANCBOQDTATUCZomKDdoNmgZQLYgHaCsEFhgmSDdAMj06dDVR3SpP/67nSK9WHJshQTXQuSPgPvfcpszuSYMqVqmLZMmyRJGhoLDrDy52GFZAYHyNUmH0xTpgyUY/2ubOqgo6Fgp6LPEUHrQYHYaMk0pwEIpWLaIVDVZ1zAcIf1FNkJLSBfGLlDIDnRQu87MXGW4K/gOR06SkguNzVyxx22Z/4C/Yw6TiEXXStZCdkatU9VeTLIA0rl00KWx06SgX9HctiHWUC2FDhmYx+x3aoqnAQR4RddhgY8iwWJQTLtGrRbOgOTSAbaUU41s/0fOooOv5qAT6W6p+MEj5xOLh5yPdWtalvB2tiLzlEMqjOckZdmYwlYGrsilihFNtMZV7pMqmXXHf6SSPFfkNyfolXzUdq5UL5vXaew3eXAN0x3dLjQEKCg7sTCYFawCZf9aG1uOnx/h42dG6ylhWX9xLrQeQ/YPIXuufcBM+Vq1Xemsq4jJa38kLfE//15JVBh9PLPqsAdjYUf88pdPX4AVkVhoJ7NOBsAAAAASUVORK5CYII=">
                     <span>Đặt khám</span>
                  </a>

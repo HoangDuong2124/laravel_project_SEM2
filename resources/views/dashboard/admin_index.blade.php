@@ -292,24 +292,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="">Chi tiết danh mục bác sĩ</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
-                        <span>Form Components</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="form_component.html">Form Elements</a></li>
-                        <li><a href="form_validation.html">Form Validation</a></li>
-						<li><a href="dropzone.html">Dropzone</a></li>
-                    </ul>
-                </li>
                
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                </li>
             </ul>            </div>
         <!-- sidebar menu end-->
     </div>
@@ -320,6 +303,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<section class="wrapper">
 		<!-- //market-->
 		<div class="market-updates">
+
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-2">
 					<div class="col-md-4 market-update-right">
@@ -327,7 +311,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					 <div class="col-md-8 market-update-left">
 					 <h4>Đơn đặt lịch</h4>
-					<h3>500</h3>
+					<h3>{{$sum}}</h3>
 					<p>Số lượng đặt lịch</p>
 				  </div>
 				  <div class="clearfix"> </div>
@@ -340,8 +324,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8 market-update-left">
 					<h4>Đang xử lí</h4>
-						<h3>1,250</h3>
+						<h3>{{$sum_xl}}</h3>
 						<p>Lịch đặt đang xử lí</p>
+					</div>
+				  <div class="clearfix"> </div>
+				</div>
+			</div>
+            <div class="col-md-3 market-update-gd">
+				<div class="market-update-block clr-block-4">
+					<div class="col-md-4 market-update-right">
+						<i style="height:48px ;" class="fa fa-book" aria-hidden="true"></i>
+					</div>
+					<div class="col-md-8 market-update-left">
+						<h4>Đã lên lịch</h4>
+						<h3>1</h3>
+						<p>Đã lên được lịch</p>
 					</div>
 				  <div class="clearfix"> </div>
 				</div>
@@ -353,29 +350,117 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="col-md-8 market-update-left">
 						<h4>Sales</h4>
-						<h3>1,500</h3>
+						<h3>10</h3>
 						<p>Mã giảm giá</p>
 					</div>
 				  <div class="clearfix"> </div>
 				</div>
 			</div>
-			<div class="col-md-3 market-update-gd">
-				<div class="market-update-block clr-block-4">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-						<h4>Orders</h4>
-						<h3>1,500</h3>
-						
-					</div>
-				  <div class="clearfix"> </div>
-				</div>
-			</div>
+			
 		   <div class="clearfix"> </div>
+    
 		</div>	
 		<!-- //market-->
-		
+        <div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Liệt kê những đơn đặt gần đây
+    </div>
+    <?php
+	   $message= Session::get('message');
+	   if($message){
+		 echo '<span class="text-alert">',$message,'</span>' ;
+		 Session::put('message',null);
+	   }
+	 ?>
+    <div class="row w3-res-tb">
+    
+      <div class="col-sm-5 m-b-xs">
+                      
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+        <form action="{{URL::to('/search-customer')}}" method="get">
+        <div class="input-group">
+          <input name="keyword_customer" type="text" class="input-sm form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" type="submit">Go!</button>
+          </span>
+        </div>
+        </form>
+      </div>
+       
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox"><i></i>
+              </label>
+            </th>
+            <th style="width:15px;">Stt</th>
+            <th>Tên người đặt</th>
+            <th>Số điện thoại</th>
+            <th >Chọn khám</th>
+            <th style="text-align: center;">Trạng thái</th>
+            <th style="width:170px;">Thời gian đặt</th>
+            
+            <th  style="width:70px;text-align: center;" > Chi tiết</th>
+          </tr>
+        </thead>
+        <tbody>
+           @foreach($show_all_book as $key => $cate)
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td style="text-align: center;">{{$cate->customer_id}}</td>
+            <td>{{$cate->customer_name}}</td>
+            <td>{{$cate->customer_phone}}</td>
+            <td><span class="text-ellipsis">{{$cate->book_type}}</span></td>
+            <td style="text-align: center;width: 125px;">
+            @if($cate->customer_status=='0')
+            <p class="customer_status1">Đang xử lí</p>
+            @endif
+            @if($cate->customer_status=='1')
+            <p class="customer_status1">Đã lên lịch khám</p>
+            @endif
+            @if($cate->customer_status=='2')
+            <p class="customer_status2">Khám thành công</p>
+            @endif
+            @if($cate->customer_status=='3')
+            <p class="customer_status2">Lịch hẹn bị hủy</p>
+            @endif
+            </td>
+            <td >{{$cate->created_at}}</td>
+            <td style="text-align: center;"><a href="{{URL::to('/show-detail-customer/'.$cate->customer_id)}}">Chi tiết</a></td>
+            
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        
+        <div class="col-sm-5 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">                
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
 	<!--//agileinfo-grap-->
 
 				</div>
@@ -402,7 +487,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.scrollTo.js"></script>
 <!-- morris JavaScript -->	
 <script>
-	$(document).ready(function() {
+	    (document).ready(function() {
 		//BOX BUTTON SHOW AND CLOSE
 	   jQuery('.small-graph-box').hover(function() {
 		  jQuery(this).find('.box-button').fadeIn('fast');

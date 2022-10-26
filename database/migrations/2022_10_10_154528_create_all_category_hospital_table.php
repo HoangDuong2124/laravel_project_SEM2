@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('all_category_hospital', function (Blueprint $table) {
              $table->increments('hospital_id');
+             $table->string('hospital_code')->unique();
              $table->string('img_hospital');
             $table->string('name_hospital');
             $table->string('address_hospital');

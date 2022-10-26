@@ -45,6 +45,7 @@
             <th style="width:15px;">Stt</th>
             <th>Tên bác sĩ</th>
             <th>Nơi làm việc</th>
+            <th>Mã bệnh viện</th>
             <th>Chuyên khoa</th>
             <th style="width:100px;">Giá đặt khám</th>
             <th style="width:70px;">Đánh giá</th>
@@ -60,8 +61,9 @@
             <td style="text-align: center;">{{$cate_pro-> doctor_id}}</td>
             <td>{{$cate_pro-> name_doctor}}</td>
             <td><span class="text-ellipsis">{{$cate_pro-> hospital_doctor}}</span></td>
+            <td>{{$cate_pro->hospital_code}}</td>
             <td>{{$cate_pro-> specialist_doctor}}</td>
-            <td style="text-align: center;">{{$cate_pro-> price_book}}</td>
+            <td style="text-align: center;">{{$cate_pro-> price_book}}VNĐ</td>
             <td style="text-align: center;">{{$cate_pro-> star_doctor}}</td>
             <td><span class="text-ellipsis"><img src="upload/doctor/{{$cate_pro-> img_doctor}}" height="55px" width="80px" ></span></td>
             <td style="text-align: center;">{{$cate_pro-> book_doctor}}</td>

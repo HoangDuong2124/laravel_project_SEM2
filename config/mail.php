@@ -14,7 +14,14 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-
+     
+    'stream' => [
+        'tls' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+        ],
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -36,11 +43,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('hoangduong21112003@gmail.com'),
+            'password' => env('xpufacfvyuuvhzxr'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -92,8 +99,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', null),
+        'name' => env('MAIL_FROM_NAME', '${APP_NAME}'),
     ],
 
     /*
